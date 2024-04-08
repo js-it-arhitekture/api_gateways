@@ -15,7 +15,7 @@ const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
     oneofs: true
 });
 const protoDescriptor = grpc.loadPackageDefinition(packageDefinition);
-const grpcService = new protoDescriptor.TicketService('0.0.0.0:8082', grpc.credentials.createInsecure());
+const grpcService = new protoDescriptor.TicketService('tickets_service:9000', grpc.credentials.createInsecure());
 
 // Define gRPC middleware to forward requests to the gRPC service
 

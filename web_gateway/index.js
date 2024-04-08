@@ -1,7 +1,7 @@
 
 // 8080 -> web_api gateway
 // 8081 -> users_service
-// 8082 -> tickets_service 
+// 9000 -> tickets_service 
 // 8083 -> tickets_purchase_service
 
 const express = require('express');
@@ -13,7 +13,7 @@ const app = express();
 
 // Define proxy middleware for each microservice
 const usersProxy = createProxyMiddleware({
-    target: 'http://localhost:8081',
+    target: 'http://users-service:8080',
     changeOrigin: true,
     pathRewrite: {
         '^/api/users': '/api/users'
@@ -21,7 +21,7 @@ const usersProxy = createProxyMiddleware({
 });
 
 const purchasesProxy = createProxyMiddleware({
-    target: 'http://localhost:8083',
+    target: 'http://tickets_provider_service:8084',
     changeOrigin: true,
     pathRewrite: {
         '^/api/purchases': '/api/purchases'
@@ -34,7 +34,7 @@ app.use('/api/tickets', grpcRouter);
 app.use('/api/purchases', purchasesProxy);
 
 // Start the Express server
-const PORT = 8080;
+const PORT = 8085;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
