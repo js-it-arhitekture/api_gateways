@@ -1,9 +1,3 @@
-
-// 8080 -> web_api gateway
-// 8081 -> users_service
-// 9000 -> tickets_service 
-// 8083 -> tickets_purchase_service
-
 const express = require('express');
 const grpcRouter = require('./grpcRouter');
 const { createProxyMiddleware } = require('http-proxy-middleware');
