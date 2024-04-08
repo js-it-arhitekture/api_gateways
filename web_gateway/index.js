@@ -32,6 +32,7 @@ const purchasesProxy = createProxyMiddleware({
 app.use('/api/users', usersProxy);
 app.use('/api/tickets', grpcRouter);
 app.use('/api/purchases', purchasesProxy);
+app.use('/api/health', (req, res) => res.json({ status: 200 }));
 
 // Start the Express server
 const PORT = 8085;
@@ -39,3 +40,4 @@ app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
 
+module.exports = app;
