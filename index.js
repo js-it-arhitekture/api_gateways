@@ -1,8 +1,11 @@
 const express = require('express');
 const grpcRouter = require('./grpcRouter');
 const { createProxyMiddleware } = require('http-proxy-middleware');
+const cors = require('cors');
 
 const app = express();
+app.use(cors());
+
 
 // Define proxy middleware for each microservice
 const usersProxy = createProxyMiddleware({
