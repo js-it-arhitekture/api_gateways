@@ -27,10 +27,6 @@ router.get('/test', (req, res) => {
 
 router.post('/create', (req, res) => {
     const requestData = req.body;
-    console.log("request body", JSON.stringify(req.body));
-
-    console.log("request data", requestData)
-
     grpcService.create(requestData, (error, response) => {
         if (error) {
             console.error('Error:', error);
