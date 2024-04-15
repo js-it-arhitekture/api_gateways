@@ -52,10 +52,10 @@ router.get('/get', (req, res) => {
     });
 });
 
-router.post('/remove', (req, res) => {
-    const requestData = req.body;
+router.delete('/remove/:id', (req, res) => {
+    const reqId = req.params.id;
 
-    grpcService.remove(requestData, (error, response) => {
+    grpcService.remove({ id: reqId }, (error, response) => {
         if (error) {
             console.error('Error:', error);
             res.status(500).json({ error: 'Internal Server Error' });
@@ -66,7 +66,7 @@ router.post('/remove', (req, res) => {
     });
 });
 
-router.post('/update', (req, res) => {
+router.put('/update', (req, res) => {
     const requestData = req.body;
 
     grpcService.update(requestData, (error, response) => {
